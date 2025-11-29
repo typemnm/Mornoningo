@@ -114,6 +114,15 @@ button {
   cursor: default;
 }
 
+.icon-button {
+  background: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 6px 10px;
+  line-height: 1;
+}
+
 .bottom-nav {
   display: flex;
   border-top: 1px solid #e5e7eb;

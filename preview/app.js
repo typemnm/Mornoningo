@@ -255,8 +255,15 @@ function renderDocsList() {
       switchScreen("quiz");
     });
 
+    const btnDelete = document.createElement("button");
+    btnDelete.className = "icon-button";
+    btnDelete.innerHTML = "🗑️";
+    btnDelete.title = "삭제";
+    btnDelete.addEventListener("click", () => deleteDoc(doc.id));
+
     btnRow.appendChild(btnDetail);
     btnRow.appendChild(btnQuiz);
+    btnRow.appendChild(btnDelete);
 
     li.appendChild(title);
     li.appendChild(meta);
@@ -293,6 +300,35 @@ function showDocDetail(docId) {
   const notesEl = document.getElementById("doc-notes");
   notesEl.textContent = doc.notes || "자동 생성된 개념노트가 여기에 표시됩니다.";
   notesEl.style.display = "none";
+}
+
+function deleteDoc(docId) {
+  const doc = state.docs.find((d) => d.id === docId);
+  if (!doc) return;
+  const ok = confirm(`"${doc.title}" 학습 자료를 삭제할까요?`);
+  if (!ok) return;
+
+  state.docs = state.docs.filter((d) => d.id !== docId);
+  state.reviews = state.reviews.filter((r) => r.docId !== docId);
+
+  if (currentDocId === docId) {
+    currentDocId = null;
+    document.getElementById("doc-detail-card").style.display = "none";
+  }
+
+  if (currentQuiz && currentQuiz.docId === docId) {
+    currentQuiz = null;
+    selectedOptionIndex = null;
+    document.getElementById("quiz-status").textContent =
+      "삭제된 자료의 퀴즈가 종료되었습니다.";
+    renderQuizQuestion();
+  }
+
+  saveState();
+  renderDocsList();
+  renderHome();
+  renderSchedule();
+  renderProfile();
 }
 
 function setupUpload() {
