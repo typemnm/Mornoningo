@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>모르노닝고 - 학습 게이미피케이션</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <header class="app-header">
+    <div class="app-title">모르노닝고</div>
+    <div class="app-subtitle" id="header-subtitle">
+      오늘 해야 할 것만 명확하게
+    </div>
+  </header>
+
+  <main class="app-main">
+    <!-- 홈 -->
+    <section id="screen-home" class="screen active">
+      <div class="card">
+        <h2>오늘의 학습</h2>
+        <p id="home-review-summary">오늘 복습할 퀴즈 0개</p>
+        <div class="button-row">
+          <button id="btn-go-review" class="btn-primary">
+            ▶ 복습할 퀴즈 풀기
+          </button>
+          <button id="btn-new-quiz" class="btn-secondary">
+            새 퀴즈 시작
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>진도 현황</h2>
+        <div class="progress-row">
+          <div class="progress-label">전체 진도</div>
+          <div class="progress-bar">
+            <div class="progress-bar-fill" id="home-progress-bar"></div>
+          </div>
+          <div class="progress-value">
+            <span id="home-progress-percent">0</span>%
+          </div>
+        </div>
+        <p id="home-streak" class="streak-text">🔥 0일 연속 달성</p>
+      </div>
+
+      <div class="card">
+        <h2>전공 추천 카드</h2>
+        <p id="home-recommend-title">
+          추천 콘텐츠가 여기에 표시됩니다.
+        </p>
+        <button id="btn-go-recommend" class="btn-ghost">
+          콘텐츠로 이동 →
+        </button>
+      </div>
+
+      <div class="card">
+        <h2>랭킹 요약</h2>
+        <p id="home-ranking-summary">
+          친구보다 +0점 ↑
+        </p>
+      </div>
+    </section>
+
+    <!-- 학습콘텐츠 / 라이브러리 -->
+    <section id="screen-library" class="screen">
+      <div class="card">
+        <h2>학습 자료 업로드</h2>
+        <p class="small">
+          PPT/PDF 파일을 업로드하면 AI가 핵심 개념과 퀴즈를 생성한다고 가정한 데모입니다.
+          실제 파일 내용은 분석하지 않고 이름만 사용합니다.
+        </p>
+        <div class="upload-row">
+          <label class="btn-primary">
+            PPT/PDF 선택
+            <input
+              type="file"
+              id="file-input"
+              multiple
+              accept=".ppt,.pptx,.pdf"
+              hidden
+            />
+          </label>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>내 학습 자료</h2>
+        <ul id="doc-list" class="doc-list"></ul>
+        <p class="empty-hint" id="doc-empty-hint">
+          아직 업로드된 학습 자료가 없습니다.
+        </p>
+      </div>
+
+      <div class="card" id="doc-detail-card" style="display: none">
+        <h2 id="doc-detail-title">자료 상세</h2>
+        <p id="doc-detail-progress">0% 완료</p>
+        <p>
+          핵심 개념
+          <strong><span id="doc-detail-concepts">0</span>개</strong>
+          추출 완료
+        </p>
+        <div class="button-row">
+          <button id="btn-start-doc-quiz" class="btn-primary">
+            퀴즈 풀기
+          </button>
+          <button id="btn-show-notes" class="btn-secondary">
+            개념노트 보기
+          </button>
+        </div>
+        <div id="doc-notes" class="notes" style="display: none"></div>
+        <div class="mini-graph">
+          <h3>퀴즈 성취도</h3>
+          <p id="doc-quiz-stats">아직 퀴즈 기록이 없습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 퀴즈 / Play -->
+    <section id="screen-quiz" class="screen">
+      <div class="card">
+        <h2>퀴즈</h2>
+        <p id="quiz-status">퀴즈 유형을 선택하거나 콘텐츠에서 시작해 주세요.</p>
+
+        <div id="quiz-body" class="quiz-body hidden">
+          <div class="quiz-meta">
+            <span id="quiz-counter">문제 0/0</span>
+            <span id="quiz-score">점수 0</span>
+          </div>
+          <div id="quiz-question" class="quiz-question"></div>
+          <div id="quiz-options" class="quiz-options"></div>
+          <button id="btn-submit-answer" class="btn-primary" disabled>
+            정답 제출
+          </button>
+          <div id="quiz-feedback" class="quiz-feedback"></div>
+        </div>
+
+        <div class="button-row">
+          <button id="btn-quick-quiz" class="btn-secondary">
+            랜덤 5문제 시작
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 복습 스케줄 -->
+    <section id="screen-schedule" class="screen">
+      <div class="card">
+        <h2>오늘 해야 할 복습</h2>
+        <ul id="review-list" class="review-list"></ul>
+        <p class="empty-hint" id="review-empty-hint">
+          오늘 예정된 복습이 없습니다.
+        </p>
+
+        <div class="divider"></div>
+        <h3>알림 설정</h3>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-notifications" checked />
+          <span>알림 받기 (데모용, 실제 푸시는 아닙니다)</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- 프로필 / My -->
+    <section id="screen-profile" class="screen">
+      <div class="card">
+        <h2 id="profile-name">Lv.1 Data Rookie 🔥</h2>
+        <p>
+          총 학습 시간:
+          <span id="profile-time">0h 0m</span>
+        </p>
+        <p>
+          정답률:
+          <span id="profile-accuracy">0%</span>
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>완료 뱃지</h2>
+        <ul id="badge-list" class="badge-list"></ul>
+      </div>
+
+      <div class="card">
+        <h2>랭킹 & 소셜</h2>
+        <p id="profile-ranking">
+          친구 평균보다 +0점
+        </p>
+        <button id="btn-open-ranking" class="btn-secondary">
+          랭킹 보기 (데모)
+        </button>
+        <p class="small">
+          추후 실제 서비스에서는 랭킹 공유 / 친구 초대 / SNS 공유가 연결됩니다.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-target="home">홈</button>
+    <button class="nav-item" data-target="library">콘텐츠</button>
+    <button class="nav-item" data-target="quiz">퀴즈</button>
+    <button class="nav-item" data-target="schedule">복습</button>
+    <button class="nav-item" data-target="profile">My</button>
+  </nav>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
