@@ -1,0 +1,268 @@
+.doc-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.doc-meta {
+  font-size: 12px;
+  color: var(--color-muted);
+  margin-top: 2px;
+}
+
+.doc-item button {
+  margin-top: 4px;
+}
+
+.upload-row {
+  margin-top: 8px;
+}
+
+.notes {
+  margin-top: 8px;
+  padding: 10px;
+  background: #f3f4ff;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.quiz-body {
+  margin-top: 8px;
+}
+
+.quiz-body.hidden {
+  display: none;
+}
+
+.quiz-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #4b5563;
+  margin-bottom: 6px;
+}
+
+.quiz-question {
+  padding: 10px;
+  border-radius: 12px;
+  background: #eff6ff;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.quiz-option {
+  width: 100%;
+  text-align: left;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  padding: 8px 10px;
+  background: #ffffff;
+  font-size: 14px;
+}
+
+.quiz-option.selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.quiz-feedback {
+  min-height: 18px;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.review-item-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.review-item-sub {
+  font-size: 12px;
+  color: var(--color-muted);
+  margin-top: 2px;
+}
+
+.review-item button {
+  margin-top: 4px;
+}
+
+/* 랭킹 */
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.ranking-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #e0e7ff;
+  border-radius: 14px;
+  background: #f9fbff;
+}
+
+.ranking-item.me {
+  border-color: #c7d2fe;
+  background: #eef2ff;
+}
+
+.ranking-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ranking-position {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #1d4ed8;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ranking-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ranking-sub {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.ranking-score {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1d4ed8;
+}
+
+
+/* 에빙하우스 추천 */
+.recommendation-card {
+  overflow: hidden;
+}
+
+.recommend-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recommend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid #e0e7ff;
+  background: #f8fafc;
+}
+
+.recommend-stage {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d4ed8;
+}
+
+.recommend-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.recommend-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.recommend-date {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.quiz-play-card {
+  display: none;
+}
+
+/* 랭킹 모달 */
+.modal {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 20;
+}
+
+.modal[aria-hidden="false"] {
+  display: flex;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 320px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.35);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-rank {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 8px;
+}
+
+.modal-score {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 4px 0;
+}
+
+.modal-streak {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 16px;
+}
+
+.modal-challenge {
+  width: 100%;
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.35);
+}

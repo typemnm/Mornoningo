@@ -4,10 +4,17 @@
   <meta charset="UTF-8" />
   <title>모르노닝고 - 학습 게이미피케이션</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <link rel="stylesheet" href="styles/screens.css" />
+  <link rel="stylesheet" href="styles/intro.css" />
 </head>
 <body>
 <div class="app">
+  <div id="intro-overlay" class="intro-overlay">
+    <img src="assets/intro-logo.png" alt="모르노닝고 로고" class="intro-logo" />
+    <p id="intro-text" class="intro-text"></p>
+  </div>
   <header class="app-header">
     <div class="app-title">모르노닝고</div>
     <div class="app-subtitle" id="header-subtitle">
@@ -50,8 +57,8 @@
         <p id="home-recommend-title">
           추천 콘텐츠가 여기에 표시됩니다.
         </p>
-        <button id="btn-go-recommend" class="btn-ghost">
-          콘텐츠로 이동 →
+        <button id="btn-go-quiz" class="btn-ghost">
+          퀴즈 허브로 이동 →
         </button>
       </div>
 
@@ -63,8 +70,27 @@
       </div>
     </section>
 
-    <!-- 학습콘텐츠 / 라이브러리 -->
-    <section id="screen-library" class="screen">
+    <!-- 랭킹 -->
+    <section id="screen-ranking" class="screen">
+      <div class="card">
+        <h2>주간 랭킹</h2>
+        <p id="ranking-highlight" class="small">
+          친구들과의 경쟁 현황이 여기에 표시됩니다.
+        </p>
+        <ul id="ranking-list" class="ranking-list"></ul>
+      </div>
+    </section>
+
+    <!-- 퀴즈 허브 -->
+    <section id="screen-quiz" class="screen">
+      <div class="card">
+        <h2>랜덤 퀴즈</h2>
+        <p class="small">AI가 최근 학습 자료 중 5문제를 랜덤으로 골라 드립니다.</p>
+        <button id="btn-quick-quiz" class="btn-primary" style="width: 100%">
+          ▶️ 랜덤 5문제 시작
+        </button>
+      </div>
+
       <div class="card">
         <h2>학습 자료 업로드</h2>
         <p class="small">
@@ -115,12 +141,8 @@
           <p id="doc-quiz-stats">아직 퀴즈 기록이 없습니다.</p>
         </div>
       </div>
-    </section>
-
-    <!-- 퀴즈 / Play -->
-    <section id="screen-quiz" class="screen">
-      <div class="card">
-        <h2>퀴즈</h2>
+      <div class="card quiz-play-card">
+        <h2>퀴즈 플레이</h2>
         <p id="quiz-status">퀴즈 유형을 선택하거나 콘텐츠에서 시작해 주세요.</p>
 
         <div id="quiz-body" class="quiz-body hidden">
@@ -134,12 +156,6 @@
             정답 제출
           </button>
           <div id="quiz-feedback" class="quiz-feedback"></div>
-        </div>
-
-        <div class="button-row">
-          <button id="btn-quick-quiz" class="btn-secondary">
-            랜덤 5문제 시작
-          </button>
         </div>
       </div>
     </section>
@@ -159,6 +175,14 @@
           <input type="checkbox" id="toggle-notifications" checked />
           <span>알림 받기 (데모용, 실제 푸시는 아닙니다)</span>
         </label>
+      </div>
+
+      <div class="card recommendation-card">
+        <h2>에빙하우스 추천 복습</h2>
+        <p class="small">
+          망각곡선 기준 1·3·7·14일 시점에서 복습하면 기억이 오래 유지됩니다.
+        </p>
+        <ul id="forgetting-reco-list" class="recommend-list"></ul>
       </div>
     </section>
 
@@ -186,9 +210,6 @@
         <p id="profile-ranking">
           친구 평균보다 +0점
         </p>
-        <button id="btn-open-ranking" class="btn-secondary">
-          랭킹 보기 (데모)
-        </button>
         <p class="small">
           추후 실제 서비스에서는 랭킹 공유 / 친구 초대 / SNS 공유가 연결됩니다.
         </p>
@@ -198,13 +219,23 @@
 
   <nav class="bottom-nav">
     <button class="nav-item active" data-target="home">홈</button>
-    <button class="nav-item" data-target="library">콘텐츠</button>
+    <button class="nav-item" data-target="ranking">랭킹</button>
     <button class="nav-item" data-target="quiz">퀴즈</button>
     <button class="nav-item" data-target="schedule">복습</button>
     <button class="nav-item" data-target="profile">My</button>
   </nav>
+  <div id="ranking-modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button id="ranking-modal-close" class="modal-close" aria-label="닫기">×</button>
+      <p class="modal-rank" id="modal-rank"></p>
+      <h3 id="modal-name"></h3>
+      <p class="modal-score" id="modal-score"></p>
+      <p class="modal-streak" id="modal-streak"></p>
+      <button id="modal-challenge" class="btn-primary modal-challenge">덤벼봐! 🔥</button>
+    </div>
+  </div>
 </div>
 
-<script src="app.js"></script>
+<script type="module" src="scripts/main.js"></script>
 </body>
 </html>

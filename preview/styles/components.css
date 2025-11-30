@@ -1,0 +1,139 @@
+.card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 16px var(--color-shadow);
+}
+
+.card h2 {
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+
+.card h3 {
+  font-size: 15px;
+  margin: 8px 0;
+}
+
+.small {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.button-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid #d1d5db;
+  color: var(--color-text);
+}
+
+.icon-button {
+  background: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 6px 10px;
+  line-height: 1;
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-label {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: #e0e7ff;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--color-primary);
+  transition: width 0.2s ease-out;
+}
+
+.progress-value {
+  font-size: 14px;
+  min-width: 48px;
+  text-align: right;
+}
+
+.streak-text {
+  font-size: 13px;
+  color: #f97316;
+  margin: 6px 0 0;
+}
+
+.doc-list,
+.review-list,
+.badge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.doc-item,
+.review-item,
+.badge-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.doc-item:last-child,
+.review-item:last-child,
+.badge-item:last-child {
+  border-bottom: none;
+}
+
+.badge-item {
+  font-size: 13px;
+}
+
+.empty-hint {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 6px;
+}
+
+.divider {
+  border-top: 1px dashed var(--color-border);
+  margin: 12px 0;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.mini-graph {
+  margin-top: 8px;
+  font-size: 13px;
+}
