@@ -1,12 +1,4 @@
-const SUBTITLE_MAP = {
-  home: "오늘 해야 할 것만 명확하게",
-  ranking: "친구들과 경쟁하며 성장",
-  quiz: "학습 자료 & 퀴즈 허브",
-  schedule: "기억 정착 & 장기 리텐션",
-  profile: "동기부여 & 성장 기록",
-};
-
-const ROUTES = new Set(Object.keys(SUBTITLE_MAP));
+const ROUTES = new Set(["home", "ranking", "quiz", "schedule", "profile"]);
 let currentRoute = "home";
 let isRoutingFromHash = false;
 
@@ -52,8 +44,6 @@ function updateActiveState(route) {
     nav.classList.toggle("active", nav.dataset.target === route);
   });
 
-  const subtitle = document.getElementById("header-subtitle");
-  if (subtitle) subtitle.textContent = SUBTITLE_MAP[route] || "모르노닝고";
 }
 
 function parseRoute(hash) {

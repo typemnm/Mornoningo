@@ -38,6 +38,9 @@ function ensureStateShape() {
   if (!appState.currentUserId) {
     appState.currentUserId = "user_me";
   }
+  if (!appState.upcomingExamDate) {
+    appState.upcomingExamDate = addDays(todayStr(), 30);
+  }
   if (!Array.isArray(appState.leaderboard) || appState.leaderboard.length === 0) {
     appState.leaderboard = buildFallbackLeaderboard(appState);
   }
@@ -102,6 +105,7 @@ function createSampleState() {
     lastLoginDate: today,
     quizSessions: [],
     currentUserId,
+    upcomingExamDate: addDays(today, 30),
     leaderboard: [
       { id: "u0", name: "랭킹 지배자", score: 1680, streak: 10 },
       { id: currentUserId, name: "Data Rookie", score: 1240, streak: 3 },

@@ -1,4 +1,5 @@
 const INTRO_MESSAGE = "전공이 재밌어지는 순간, 모르노닝고";
+const INTRO_VISIBLE_MS = 2200;
 
 export function playIntro() {
   return new Promise((resolve) => {
@@ -9,30 +10,43 @@ export function playIntro() {
       return;
     }
 
-    let index = 0;
-    const startTyping = () => {
-      const typingInterval = setInterval(() => {
-        textEl.textContent = INTRO_MESSAGE.slice(0, index + 1);
-        index += 1;
-        if (index >= INTRO_MESSAGE.length) {
-          clearInterval(typingInterval);
-          setTimeout(() => beginFadeOut(overlay, resolve), 700);
-        }
-      }, 70);
+    textEl.textContent = INTRO_MESSAGE;
+
+    const cleanup = () => {
+      overlay.removeEventListener("click", handleSkip);
+      clearTimeout(timer);
     };
 
-    setTimeout(startTyping, 600);
+    const closeOverlay = () => {
+      if (!overlay.parentNode) {
+        resolve();
+        return;
+      }
+      overlay.classList.add("fade-out");
+      overlay.addEventListener(
+        "animationend",
+        () => finishIntro(overlay, resolve),
+        { once: true }
+      );
+      setTimeout(() => finishIntro(overlay, resolve), 900);
+    };
+
+    const handleSkip = () => {
+      cleanup();
+      closeOverlay();
+    };
+
+    overlay.addEventListener("click", handleSkip);
+    const timer = setTimeout(() => {
+      cleanup();
+      closeOverlay();
+    }, INTRO_VISIBLE_MS);
   });
 }
 
-function beginFadeOut(overlay, resolve) {
-  overlay.classList.add("fade-out");
-  overlay.addEventListener(
-    "animationend",
-    () => {
-      overlay.remove();
-      resolve();
-    },
-    { once: true }
-  );
+function finishIntro(overlay, resolve) {
+  if (overlay.parentNode) {
+    overlay.remove();
+  }
+  resolve();
 }
